@@ -15,8 +15,11 @@
     "predev": "node scripts/generate.js",
     "prebuild": "node scripts/generate.js",
     "pretest": "node scripts/generate.js",
-    "build": "yarn test && vite build && node scripts/postbuild.js",
-    "dev": "vite",
+    "build": "yarn test && next build",
+    "dev": "next dev",
+    "start": "next start",
+    "dev:vite": "vite",
+    "build:vite": "vite build && node scripts/postbuild.js",
     "test": "jasmine",
     "test:coverage": "nyc jasmine",
     "lint": "eslint src __tests__ scripts vite.config.mjs eslint.config.js",
@@ -39,14 +42,17 @@
     "vite-plugin-node-polyfills": "^0.28.0"
   },
   "dependencies": {
+    "events": "^3.3.0",
     "flux": "^4.0.3",
     "jquery": "^3.4.0",
     "jquery-ui": "1.13.2",
     "marked": "^18.0.14",
+    "next": "14.2.24",
+    "process": "^0.11.10",
     "prop-types": "^15.8.1",
     "raphael": "^2.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "underscore": "^1.13.8"
   },
   "resolutions": {
