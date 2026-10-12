@@ -12,6 +12,9 @@ export default function Document() {
         <meta property="og:description" content="An interactive Git visualization tool to educate and challenge!" />
         <meta httpEquiv="content-language" content="en" />
         <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{
           __html: `
             #appLoading {
@@ -24,17 +27,17 @@ export default function Document() {
               display: flex;
               align-items: center;
               justify-content: center;
-              background: #5cbcfc;
+              background: #1e1e1e;
               opacity: 0;
               animation: appLoadingFadeIn 150ms ease 250ms forwards;
             }
             #appLoading::after {
               content: '';
-              width: 28px;
-              height: 28px;
+              width: 32px;
+              height: 32px;
               border-radius: 50%;
-              border: 3px solid rgba(0, 0, 0, 0.2);
-              border-top-color: #222;
+              border: 3px solid rgba(255, 255, 255, 0.15);
+              border-top-color: #007acc;
               animation: appLoadingSpin 700ms linear infinite;
             }
             @keyframes appLoadingFadeIn {

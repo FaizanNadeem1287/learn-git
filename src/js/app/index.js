@@ -90,10 +90,15 @@ var init = function() {
 
   initRootEvents(eventBaton);
   initDemo(sandbox);
-  // unfortunate global export for casper tests
   window.LocaleStore = LocaleStore;
   window.LocaleActions = LocaleActions;
   window.intl = intl;
+  window.eventBaton = eventBaton;
+  window.runGitCommand = function(cmd) {
+    if (eventBaton) {
+      eventBaton.trigger('commandSubmitted', cmd);
+    }
+  };
 
   $(window).on('beforeunload', function(e) {
     return GlobalStateStore.getIsSolvingLevel() ? 'you have a level in progress' : null;

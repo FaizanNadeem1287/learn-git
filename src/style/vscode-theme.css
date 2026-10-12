@@ -1,0 +1,821 @@
+/* ==========================================================================
+   VS CODE DEVELOPER EXPERIENCE THEME FOR LEARNGITBRANCHING
+   ========================================================================== */
+
+:root {
+  --vscode-bg-editor: #1e1e1e;
+  --vscode-bg-editor-alt: #181818;
+  --vscode-bg-sidebar: #252526;
+  --vscode-bg-titlebar: #323233;
+  --vscode-bg-statusbar: #007acc;
+  --vscode-bg-terminal: #141414;
+  --vscode-bg-panel: #1e1e1e;
+  --vscode-bg-tab-active: #1e1e1e;
+  --vscode-bg-tab-inactive: #2d2d2d;
+  --vscode-bg-card: #252526;
+  --vscode-bg-input: #3c3c3c;
+  
+  --vscode-border-dark: #2b2b2b;
+  --vscode-border-light: #3c3c3c;
+  --vscode-border-focus: #007acc;
+  
+  --vscode-fg-primary: #cccccc;
+  --vscode-fg-bright: #ffffff;
+  --vscode-fg-muted: #858585;
+  --vscode-fg-keyword: #c586c0;
+  --vscode-fg-function: #dcdcaa;
+  --vscode-fg-variable: #9cdcfe;
+  --vscode-fg-string: #ce9178;
+  --vscode-fg-type: #4ec9b0;
+  
+  --vscode-accent-blue: #007acc;
+  --vscode-accent-blue-hover: #1177bb;
+  --vscode-accent-green: #89d185;
+  --vscode-accent-yellow: #cca700;
+  --vscode-accent-red: #f14c4c;
+  
+  --vscode-font-code: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, Menlo, Monaco, monospace;
+  --vscode-font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Base resets & typography */
+html, body {
+  background-color: var(--vscode-bg-editor) !important;
+  color: var(--vscode-fg-primary) !important;
+  font-family: var(--vscode-font-ui) !important;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* VS Code App Frame Container */
+.vscode-app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--vscode-bg-editor);
+  overflow: hidden;
+  position: relative;
+}
+
+/* 1. VS Code Top Title Bar */
+.vscode-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 35px;
+  background-color: var(--vscode-bg-titlebar);
+  color: var(--vscode-fg-primary);
+  font-size: 12px;
+  padding: 0 10px;
+  border-bottom: 1px solid var(--vscode-border-dark);
+  user-select: none;
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.vscode-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vscode-traffic-lights {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 4px;
+}
+
+.vscode-traffic-lights .dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.vscode-traffic-lights .dot:hover {
+  opacity: 0.8;
+}
+
+.vscode-traffic-lights .dot.red { background-color: #ff5f56; }
+.vscode-traffic-lights .dot.yellow { background-color: #ffbd2e; }
+.vscode-traffic-lights .dot.green { background-color: #27c93f; }
+
+.vscode-menubar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #bbbbbb;
+  font-size: 12px;
+}
+
+.vscode-menubar span {
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.vscode-menubar span:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.vscode-titlebar-center {
+  flex: 1;
+  max-width: 540px;
+  display: flex;
+  justify-content: center;
+  padding: 0 12px;
+}
+
+.vscode-search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--vscode-border-light);
+  border-radius: 6px;
+  padding: 4px 14px;
+  width: 100%;
+  color: #9d9d9d;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vscode-search-box:hover,
+.vscode-search-box:focus-within {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--vscode-accent-blue);
+  color: #eeeeee;
+}
+
+.vscode-titlebar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vscode-badge {
+  background: rgba(0, 122, 204, 0.2);
+  color: #4fc1ff;
+  border: 1px solid rgba(0, 122, 204, 0.4);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* 2. Middle Body (Activity Bar + Workspace) */
+.vscode-workspace-row {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  min-height: 0;
+}
+
+/* Left Activity Bar */
+.vscode-activitybar {
+  width: 48px;
+  background-color: var(--vscode-bg-editor-alt);
+  border-right: 1px solid var(--vscode-border-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  z-index: 999;
+  flex-shrink: 0;
+}
+
+.vscode-activitybar-top,
+.vscode-activitybar-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.vscode-activity-icon {
+  width: 48px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--vscode-fg-muted);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s ease, background 0.15s ease;
+  font-size: 18px;
+}
+
+.vscode-activity-icon:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.vscode-activity-icon.active {
+  color: #ffffff;
+}
+
+.vscode-activity-icon.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  background-color: var(--vscode-accent-blue);
+  border-radius: 0 2px 2px 0;
+}
+
+/* 3. Main Workspace Area Containing #interfaceWrapper */
+.vscode-editor-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  min-height: 0;
+  height: 100%;
+}
+
+/* Editor tab bar header */
+.vscode-tabs-bar {
+  display: flex;
+  background: var(--vscode-bg-editor-alt);
+  border-bottom: 1px solid var(--vscode-border-dark);
+  height: 34px;
+  align-items: flex-end;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.vscode-editor-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--vscode-bg-tab-inactive);
+  border-right: 1px solid var(--vscode-border-dark);
+  color: var(--vscode-fg-muted);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-top: 2px solid transparent;
+  height: 28px;
+}
+
+.vscode-editor-tab:hover {
+  background: #232323;
+  color: #ffffff;
+}
+
+.vscode-editor-tab.active {
+  background: var(--vscode-bg-editor);
+  color: #ffffff;
+  border-top: 2px solid var(--vscode-accent-blue);
+  font-weight: 500;
+}
+
+.vscode-editor-tab i {
+  font-size: 13px;
+}
+
+/* Core interfaceWrapper */
+#interfaceWrapper {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* 4. Git Visualization Canvas (#mainVisSpace) */
+#mainVisSpace,
+.visBackgroundColor,
+div.gitDemonstrationView > div.visHolder {
+  background-color: var(--vscode-bg-editor) !important;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1px, transparent 1px) !important;
+  background-size: 24px 24px !important;
+  position: relative;
+  flex: 2 1 auto !important;
+}
+
+body.hgMode #mainVisSpace,
+body.hgMode .visBackgroundColor,
+body.hgMode div.gitDemonstrationView > div.visHolder {
+  background-color: #162022 !important;
+}
+
+#mainVisSpace .modeText {
+  color: rgba(255, 255, 255, 0.05) !important;
+  font-family: var(--vscode-font-code) !important;
+  font-weight: 800 !important;
+  letter-spacing: 4px !important;
+}
+
+#canvasHolder {
+  pointer-events: none;
+  z-index: 2;
+}
+
+#canvasHolder svg {
+  pointer-events: auto;
+}
+
+/* 5. Terminal & Controls Sidebar (#controls) */
+#controls {
+  max-width: 440px !important;
+  min-width: 340px !important;
+  background-color: var(--vscode-bg-editor-alt) !important;
+  border-right: 1px solid var(--vscode-border-dark) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+#commandLineHistory {
+  background-color: var(--vscode-bg-terminal) !important;
+  border: 1px solid var(--vscode-border-light) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  margin: 10px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+}
+
+/* Terminal Toolbar as VS Code Panel Title */
+#commandLineHistory > div.toolbar {
+  background: var(--vscode-bg-sidebar) !important;
+  background-image: none !important;
+  border: none !important;
+  border-bottom: 1px solid var(--vscode-border-light) !important;
+  height: 36px !important;
+  color: var(--vscode-fg-primary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 12px !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+#commandLineHistory > div.toolbar label {
+  color: #e0e0e0 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#commandLineHistory > div.toolbar label i {
+  color: var(--vscode-accent-blue);
+}
+
+/* Traffic light buttons */
+#commandLineHistory div.controls div.box.flex1 div {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  transition: transform 0.15s ease;
+  cursor: pointer;
+}
+
+#commandLineHistory div.controls div.box.flex1 div:hover {
+  transform: scale(1.2);
+}
+
+#commandLineHistory div.controls div.box.flex1 div.close {
+  background-color: #ff5f56 !important;
+}
+#commandLineHistory div.controls div.box.flex1 div.minimize {
+  background-color: #ffbd2e !important;
+}
+#commandLineHistory div.controls div.box.flex1 div.plus {
+  background-color: #27c93f !important;
+}
+
+/* Terminal Content Window */
+#terminal {
+  background: var(--vscode-bg-terminal) !important;
+  border: none !important;
+  font-family: var(--vscode-font-code) !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  padding: 10px 12px !important;
+  color: #d4d4d4 !important;
+  flex: 1 1 auto !important;
+}
+
+#commandLineBar {
+  background: #181818 !important;
+  border: none !important;
+  border-top: 1px solid var(--vscode-border-dark) !important;
+  padding: 8px 12px !important;
+  font-family: var(--vscode-font-code) !important;
+}
+
+#prompt {
+  font-family: var(--vscode-font-code) !important;
+  font-size: 13px !important;
+  display: flex;
+  align-items: center;
+}
+
+#commandLineBar #prompt span.promptSign,
+p.commandLine span.prompt {
+  color: var(--vscode-fg-type) !important; /* VS Code teal #4ec9b0 */
+  font-weight: 700 !important;
+}
+
+#commandLineBar p.command {
+  color: var(--vscode-fg-function) !important; /* VS Code yellow #dcdcaa */
+  margin-left: 10px !important;
+}
+
+#prompt span.cursor {
+  background-color: var(--vscode-accent-blue) !important;
+  width: 8px !important;
+  height: 15px !important;
+  border-radius: 1px;
+}
+
+/* Terminal Output Items */
+p.commandLine {
+  font-family: var(--vscode-font-code) !important;
+  font-size: 13px !important;
+  padding: 4px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+p.commandLine span.icons {
+  border-radius: 4px !important;
+  padding: 1px 7px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+p.commandLine.finished span.icons {
+  background: rgba(14, 99, 156, 0.4) !important;
+  color: #4fc1ff !important;
+  border: 1px solid rgba(14, 99, 156, 0.6) !important;
+}
+
+p.commandLine.processing span.icons {
+  background: rgba(78, 201, 176, 0.25) !important;
+  color: #4ec9b0 !important;
+  border: 1px solid rgba(78, 201, 176, 0.5) !important;
+}
+
+p.commandLine.error span.icons {
+  background: rgba(241, 76, 76, 0.3) !important;
+  color: #f14c4c !important;
+  border: 1px solid rgba(241, 76, 76, 0.5) !important;
+}
+
+p.commandLine.warning span.icons {
+  background: rgba(204, 167, 0, 0.3) !important;
+  color: #dcdcaa !important;
+  border: 1px solid rgba(204, 167, 0, 0.5) !important;
+}
+
+div.commandLineResult {
+  color: #9cdcfe !important; /* VS Code cyan variable */
+  font-family: var(--vscode-font-code) !important;
+  font-size: 12.5px !important;
+  padding: 6px 10px !important;
+  border-left: 3px solid var(--vscode-accent-blue) !important;
+  background: rgba(0, 122, 204, 0.08) !important;
+  border-radius: 0 4px 4px 0 !important;
+  margin: 4px 0 !important;
+}
+
+div.commandLineWarnings {
+  color: #cca700 !important;
+  font-family: var(--vscode-font-code) !important;
+  font-size: 12px !important;
+  padding: 6px 10px !important;
+  border-left: 3px solid #cca700 !important;
+  background: rgba(204, 167, 0, 0.08) !important;
+  border-radius: 0 4px 4px 0 !important;
+  margin: 4px 0 !important;
+}
+
+/* 6. Level Toolbar Inside Terminal */
+div.toolbar.level-toolbar {
+  background: var(--vscode-bg-sidebar) !important;
+  background-image: none !important;
+  border-bottom: 1px solid var(--vscode-border-light) !important;
+  color: var(--vscode-fg-primary) !important;
+  padding: 6px 12px !important;
+}
+
+div.toolbar.level-toolbar button {
+  background: var(--vscode-bg-input) !important;
+  background-image: none !important;
+  border: 1px solid var(--vscode-border-light) !important;
+  color: var(--vscode-fg-bright) !important;
+  border-radius: 4px !important;
+  font-family: var(--vscode-font-ui) !important;
+  font-size: 11px !important;
+  padding: 4px 10px !important;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+div.toolbar.level-toolbar button:hover {
+  background: var(--vscode-accent-blue) !important;
+  border-color: var(--vscode-accent-blue-hover) !important;
+}
+
+/* 7. Floating Goal Window (Target Graph) */
+div.canvasTerminalHolder {
+  top: 75px !important;
+  right: 20px !important;
+}
+
+div.canvasTerminalHolder > div.terminal-window-holder > div.wrapper {
+  background: var(--vscode-bg-card) !important;
+  border: 1px solid var(--vscode-border-light) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7) !important;
+}
+
+div.canvasTerminalHolder > div.terminal-window-holder div.toolbar {
+  background: var(--vscode-bg-sidebar) !important;
+  background-image: none !important;
+  border-bottom: 1px solid var(--vscode-border-light) !important;
+  color: #ffffff !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+div.canvasTerminalHolder > div.terminal-window-holder div.terminal-text,
+div.canvasTerminalHolder > div.terminal-window-holder div.inside {
+  background: var(--vscode-bg-editor) !important;
+  border-radius: 0 0 8px 8px !important;
+}
+
+/* 8. UI Buttons */
+.uiButton {
+  background-color: var(--vscode-accent-blue) !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 4px !important;
+  font-family: var(--vscode-font-ui) !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  padding: 6px 14px !important;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.uiButton:hover {
+  background-color: var(--vscode-accent-blue-hover) !important;
+  box-shadow: 0 2px 10px rgba(0, 122, 204, 0.4) !important;
+}
+
+.uiButtonYellow {
+  background-color: var(--vscode-accent-blue) !important;
+  border-color: var(--vscode-accent-blue-hover) !important;
+  color: #ffffff !important;
+}
+
+.uiButtonYellow:hover {
+  background-color: var(--vscode-accent-blue-hover) !important;
+}
+
+.uiButtonWhite {
+  background-color: var(--vscode-bg-input) !important;
+  border-color: #555555 !important;
+  color: #eeeeee !important;
+}
+
+.uiButtonWhite:hover {
+  background-color: #4a4a4a !important;
+  color: #ffffff !important;
+}
+
+.uiButtonRed {
+  background-color: #a1260d !important;
+  border-color: #bd381d !important;
+  color: #ffffff !important;
+}
+
+.uiButtonRed:hover {
+  background-color: #c93b2b !important;
+}
+
+.uiButtonPink {
+  background-color: #6a329f !important;
+  border-color: #8344c2 !important;
+  color: #ffffff !important;
+}
+
+/* 9. Floating Helper Bar (Toast Navigation) */
+.helperBar {
+  background: rgba(30, 30, 30, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--vscode-border-light) !important;
+  border-bottom: 2px solid var(--vscode-accent-blue) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6) !important;
+  font-family: var(--vscode-font-ui) !important;
+  font-size: 12px !important;
+  color: #e0e0e0 !important;
+  padding: 12px 16px !important;
+  bottom: 24px !important;
+  z-index: 1000 !important;
+}
+
+.helperBar a {
+  color: #4fc1ff !important;
+  background: rgba(0, 122, 204, 0.15) !important;
+  border: 1px solid rgba(0, 122, 204, 0.3) !important;
+  padding: 3px 8px !important;
+  border-radius: 4px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  margin: 0 2px !important;
+  transition: all 0.15s ease !important;
+}
+
+.helperBar a:hover {
+  background: var(--vscode-accent-blue) !important;
+  color: #ffffff !important;
+}
+
+/* 10. Modals & Dialogs (VS Code Command Palette & Markdown Preview) */
+.modalView {
+  background: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(8px) !important;
+  z-index: 2000 !important;
+}
+
+.modalView .terminal-window-holder > .wrapper {
+  background: var(--vscode-bg-card) !important;
+  border: 1px solid var(--vscode-border-light) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8) !important;
+  color: var(--vscode-fg-primary) !important;
+}
+
+.modalView .terminal-window .inside {
+  background: var(--vscode-bg-editor) !important;
+  border: none !important;
+  border-radius: 0 0 8px 8px !important;
+}
+
+.modalView .terminal-window .inside h2,
+.modalView .terminal-window .inside h3 {
+  color: #ffffff !important;
+  border-bottom: 1px solid var(--vscode-border-dark);
+  padding-bottom: 8px;
+}
+
+.modalView .terminal-window .inside code,
+code {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #ce9178 !important; /* VS Code string color */
+  font-family: var(--vscode-font-code) !important;
+  font-size: 12.5px !important;
+  border-radius: 3px !important;
+  padding: 2px 6px !important;
+}
+
+/* 11. Level Explorer & Selection Cards */
+div.levelDropdownTabWrapper {
+  border-bottom: 1px solid var(--vscode-border-light) !important;
+  gap: 4px;
+}
+
+div.levelDropdownTab {
+  background: var(--vscode-bg-tab-inactive) !important;
+  border: 1px solid var(--vscode-border-light) !important;
+  border-bottom: none !important;
+  border-radius: 6px 6px 0 0 !important;
+  color: var(--vscode-fg-primary) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  padding: 6px 14px !important;
+  box-shadow: none !important;
+  transition: all 0.15s ease !important;
+}
+
+div.levelDropdownTab:not(.deselected) {
+  background: var(--vscode-bg-editor) !important;
+  color: #ffffff !important;
+  border-top: 2px solid var(--vscode-accent-blue) !important;
+}
+
+div.levelDropdownTab.deselected:hover {
+  background: #333333 !important;
+  color: #ffffff !important;
+  opacity: 0.8 !important;
+}
+
+a.levelIcon {
+  background: var(--vscode-bg-card) !important;
+  background-image: none !important;
+  border: 1px solid var(--vscode-border-light) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  color: #ffffff !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+a.levelIcon:hover {
+  border-color: var(--vscode-accent-blue) !important;
+  box-shadow: 0 6px 20px rgba(0, 122, 204, 0.35) !important;
+  transform: translateY(-2px) !important;
+}
+
+a.levelIcon.solved {
+  background: #193322 !important;
+  background-image: none !important;
+  border-color: var(--vscode-accent-green) !important;
+  color: var(--vscode-accent-green) !important;
+}
+
+a.levelIcon.best {
+  background: #332b14 !important;
+  background-image: none !important;
+  border-color: var(--vscode-accent-yellow) !important;
+  color: #ffd700 !important;
+}
+
+/* 12. Bottom VS Code Status Bar */
+.vscode-statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 24px;
+  background-color: var(--vscode-bg-statusbar);
+  color: #ffffff;
+  font-size: 11px;
+  padding: 0 10px;
+  user-select: none;
+  z-index: 1000;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.vscode-statusbar-left,
+.vscode-statusbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vscode-status-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 3px;
+  transition: background 0.15s ease;
+}
+
+.vscode-status-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vscode-bg-editor-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #424242;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f4f4f;
+}
